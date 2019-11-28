@@ -1,13 +1,10 @@
 # Getting started
 
-The quickest way to get started with Photon and/or Lift is by installing the Prisma CLI and running the interactive `init` command:
+The quickest way to get started with Photon and/or Lift is by invoking the Prisma Framework CLI with the interactive `init` command:
 
 ```
-npm install -g prisma2
-prisma2 init hello-prisma
+npx prisma2 init hello-prisma
 ```
-
-> **Note**: Lift and Photon are currently in Preview! [Limitations](https://github.com/prisma/prisma2/blob/master/docs/limitations.md) include missing features and limited performance issues.
 
 ## The `prisma2 init` flow
 
