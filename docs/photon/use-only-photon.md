@@ -1,12 +1,10 @@
-# Using only Photon (without Lift)
+# Using only Photon.js (without Lift)
 
-You can use Photon as an ORM in your application without using Lift for database migrations. This is useful for _existing applications_ when there already is a working migration system or when you don't have the rights inside your organization to perform database migrations yourself.
+You can use Photon.js as a database client in your application without using Lift for database migrations. This is useful for _existing applications_ when you want to run database migrations manually, when there already is a working migration system or when you don't have the rights inside your organization to perform database migrations yourself.
 
-When using Photon without Lift, you obtain your data model definition by _introspecting_ your database schema and generating the Prisma data model from it. The generated data model then serves as foundation for Photon's generated CRUD API. Whenever a schema migration is performed on the database afterwards, you need to re-introspect your database (which updates your data model) and re-generate your Photon API.
+When using Photon.js without Lift, you obtain your data model definition by [_introspecting_](../introspection.md) your database schema and generating the Prisma [data model](../data-modeling.md) from it. The generated data model then serves as foundation for Photon.js's generated data access [API](./api.md). Whenever a schema migration is performed on the database later in the lifetime of your project, you need to re-introspect your database (which updates your data model) and re-generate your Photon.js API.
 
-**This page is about using Photon with an existing database**. Learn more about getting started from scratch with Photon and Lift [here](./).
-
-## Getting started with Photon
+## Getting started with Photon.js
 
 ### 1. Set up project using `prisma2 init`
 
@@ -36,14 +34,12 @@ Then follow the interactive prompt:
 Once you're done with the interactive prompt, the CLI sets out for 3 major tasks:
 
 1. Introspecting your database schema
-1. Generating a data model based on the introspection
-1. Generating the Photon API in your selected language
+1. Generating a Prisma schema for your database based on the introspection
+1. Generating the Photon.js API
 
-Plus, if you've selected a boilerplate to get started, it downloads the boilerplate code and configures it to connect to your database and match the generated data model.
+### 2. Integrate Photon.js in your application
 
-### 2. Integrate Photon in your application
-
-To start using Photon in your application, you first need to install it as an npm dependecy:
+To start using Photon.js in your application, you first need to install it as an npm dependecy:
 
 ```
 npm install @prisma/photon
@@ -57,7 +53,7 @@ npm install prisma2 --save-dev
 
 Now you can import it from `node_modules/@prisma/photon` and start calling your database via the [generated Photon API](./api.md).
 
-### 3. Customize your Photon API
+### 3. Customize your generated Photon.js API
 
 One benefit of having the data model as an intermediate representation of your database schema is that lets you to _decouple_ the database schema from your data access API. For example, you can map cryptic table names to friendlier model names to be used in your API.
 
@@ -95,9 +91,9 @@ await photon.customers.findMany({
 })
 ```
 
-### 5. Evolve your application
+### 4. Evolve your application
 
-Whenever the database schema changes throughout the lifetime of your application, you need to re-generate your Photon API to ensure it still matches the underlying database structures. The workflow for that typically involves two steps:
+Whenever the database schema changes throughout the lifetime of your application, you need to re-generate your Photon.js API to ensure it still matches the underlying database structures. The workflow for that typically involves two steps:
 
 1. Re-introspecting your database schema to update the data model
 1. Re-generate your Photon API
@@ -146,11 +142,6 @@ Once provided, the CLI will prompt you to select one of the existing **schemas**
 
 </Details>
 
-<Details><Summary>Database credentials for <strong>MongoDB</strong></Summary>
-<br />
-When using MongoDB, you need to provide your [MongoDB connection string](https://docs.mongodb.com/manual/reference/connection-string), e.g. `http://user1:myPassword@localhost:27017/admin`. Note that this must include the database credentials as well as the [`authSource`](https://docs.mongodb.com/manual/reference/connection-string/#authentication-options) database that's storing the credentials of your MongoDB `admin` user (by default it is often called `admin`).
-
-</Details>
 
 ### Demo scripts
 
