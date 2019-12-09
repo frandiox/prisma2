@@ -101,8 +101,8 @@ Whenever the database schema changes throughout the lifetime of your application
 In CLI commands, this looks as follows:
 
 ```
-prisma2 introspect
-prisma2 generate
+npx prisma2 introspect
+npx prisma2 generate
 ```
 
 ## Database credentials
