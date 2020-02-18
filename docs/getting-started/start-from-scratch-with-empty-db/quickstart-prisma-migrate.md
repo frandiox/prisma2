@@ -46,7 +46,7 @@ Follow these steps for an initial Prisma setup:
       provider = "prisma-client-js"
     }
     ```
-1. Configure project (TypeScript):
+1. Run the following commands to configure your project (TypeScript):
     ```
     npm init -y
     npm install typescript ts-node prisma2 --save-dev
@@ -69,6 +69,10 @@ Follow these steps for an initial Prisma setup:
     npx prisma2 migrate save --name 'init' --experimental
     npx prisma2 migrate up --experimental
     ```
+1. Generate Prisma Client based on your data model with the following command:
+   ```
+   npx prisma2 generate
+   ```
 1. Run `touch index.ts` to create a source file and add the following code:
     ```ts
     import { PrismaClient } from '@prisma/client'
